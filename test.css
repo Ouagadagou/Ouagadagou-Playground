@@ -12,9 +12,21 @@ body {
     border-style: dotted;
 }
 
+.text {
+    font-family: "Segoe UI", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+    color: rgb(173, 137, 69);
+    font-style: italic;
+    background-color: rgb(235, 205, 170);
+    border-width: 2px;
+    border-color: azure;
+    border-style: dotted;
+    width: 100px;
+    margin-left: 903px;
+}
+
 .header {
     font-family: "Segoe UI", "Helvetica Neue", "Helvetica", Arial, sans-serif;
-    font-size: 100px;
+    font-size: 80px;
     color: black
 }
 

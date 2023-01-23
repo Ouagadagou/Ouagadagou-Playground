@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -6,14 +7,29 @@
 </head>
 
 <body>
-    <h1 class="center header">Search Google</h1>
+    <h1 class="center header">Testing</h1>
     <div class="center">
         <input id="input" class="center input">
     </div>
+    <br style="line-height: 30px">
+    <div class="center text">
+        <span class="center" id="hours">00</span>
+        <span>:</span>
+        <span class="center" id="minutes">00</span>
+        <span>:</span>
+        <span class="center" id="seconds">00</span>
+    </div>
 </body>
+
 <script>
-    var inputId = document.getElementById("input")
-    var inputValue = document.getElementById("input").value
+    const inputId = document.getElementById("input")
+    const inputValue = document.getElementById("input").value
+    const secondsId = document.getElementById("seconds")
+    const minutesId = document.getElementById("minutes")
+    const hoursId = document.getElementById("hours")
+    var s = 0;
+    var m = 0;
+    var h = 0;
     inputId.addEventListener("keypress", function(event) {
         if (event.key === "Enter") {
             event.preventDefault();
@@ -22,6 +38,47 @@
             window.open(`https://www.google.com/search?q=${inputValue}`);
         }
     })
+    function loop() {
+        setTimeout(function() {
+            s++;
+            if (s > 59) {
+                s = 0;
+                secondsId.innerHTML = "0" + s
+                m++;
+                if (m > 59) {
+                    m = 0
+                    minutesId.innerHTML = "0" + m
+                    h++
+                    if (h < 10) {
+                        hoursId.innerHTML = "0" + h
+                    }
+                    else{
+                        hoursId.innerHTML = h
+                    }
+                    loop()
+                }
+                else {
+                    if (m < 10) {
+                        minutesId.innerHTML = "0" + m
+                    }
+                    else{
+                        minutesId.innerHTML = m
+                    }
+                    loop()
+                }
+            }
+            else {
+                if (s < 10) {
+                    secondsId.innerHTML = "0" + s
+                }
+                else{
+                    secondsId.innerHTML = s
+                }
+                loop()
+            }
+        }, 1000);
+    }
+    loop();
 </script>
 
 </html>
