@@ -20,8 +20,27 @@ body {
     border-width: 2px;
     border-color: azure;
     border-style: dotted;
+    width: 207px;
+    font-size: 40px;
+    display: table;
+    margin: 0 auto;
+}
+
+.button {
+    font-family: "Segoe UI", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+    color: rgb(173, 137, 69);
+    font-style: italic;
+    background-color: rgb(235, 205, 170);
+    border-width: 2px;
+    border-color: azure;
+    border-style: dotted;
     width: 100px;
-    margin-left: 900px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-right: 20px;
+    margin-left: 20px;
 }
 
 .header {
