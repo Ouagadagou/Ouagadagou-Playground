@@ -11,6 +11,7 @@ var t = 0
 var s = 0;
 var m = 0;
 var h = 0;
+var r = -1;
 inputId.addEventListener("keypress", function(event) {
     if (event.key === "Enter") {
         event.preventDefault();
@@ -20,14 +21,13 @@ inputId.addEventListener("keypress", function(event) {
     }
 })
 function start() {
+    pauseId.classList.remove("hidden");
+    startId.classList.add("hidden");
     setTimeout(function() {
-        startId.classList.add("hidden");
         if (t > 0) {
             return
         }
         else {
-            resumeId.classList.add("hidden");
-            pauseId.classList.remove("hidden");
             s++;
             if (s > 99) {
                 s = 0;
@@ -60,10 +60,11 @@ function start() {
                 start()
             }
         }
-    }, 10);
-}
+    }, 250);
+}   
 function reset() {
-    s = -1;
+    r = 1
+    s = 0;
     m = 0;
     h = 0;
     secondsId.innerHTML = "0" + m
@@ -78,6 +79,8 @@ function pause() {
 function resume() {
     if (t > 0) {
     t = 0
+    resumeId.classList.add("hidden");
+    pauseId.classList.remove("hidden");
     start()
     }
 }
