@@ -5,6 +5,8 @@ const minutesId = document.getElementById("minutes")
 const hoursId = document.getElementById("hours")
 const resetId = document.getElementById("reset")
 const startId = document.getElementById("start")
+const pauseId = document.getElementById("pause")
+const resumeId = document.getElementById("resume")
 var t = 0
 var s = 0;
 var m = 0;
@@ -17,8 +19,15 @@ inputId.addEventListener("keypress", function(event) {
         window.open(`https://www.google.com/search?q=${inputValue}`);
     }
 })
-function loop() {
+function start() {
     setTimeout(function() {
+        startId.classList.add("hidden");
+        if (t > 0) {
+            return
+        }
+        else {
+            resumeId.classList.add("hidden");
+            pauseId.classList.remove("hidden");
             s++;
             if (s > 99) {
                 s = 0;
@@ -33,14 +42,14 @@ function loop() {
                     } else {
                         hoursId.innerHTML = h
                     }
-                    loop()
+                    start()
                 } else {
                     if (m < 10) {
                         minutesId.innerHTML = "0" + m
                     } else {
                         minutesId.innerHTML = m
                     }
-                    loop()
+                    start()
                 }
             } else {
                 if (s < 10) {
@@ -48,15 +57,27 @@ function loop() {
                 } else {
                     secondsId.innerHTML = s
                 }
-                loop()
+                start()
             }
+        }
     }, 10);
 }
-function add() {
+function reset() {
     s = -1;
     m = 0;
     h = 0;
     secondsId.innerHTML = "0" + m
     minutesId.innerHTML = "0" + m
     hoursId.innerHTML = "0" + h
+}
+function pause() {
+    t = 1
+    pauseId.classList.add("hidden");
+    resumeId.classList.remove("hidden");
+}
+function resume() {
+    if (t > 0) {
+    t = 0
+    start()
+    }
 }

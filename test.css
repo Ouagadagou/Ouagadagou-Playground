@@ -21,7 +21,7 @@ body {
     border-color: azure;
     border-style: dotted;
     width: 100px;
-    margin-left: 903px;
+    margin-left: 900px;
 }
 
 .header {
@@ -32,4 +32,8 @@ body {
 
 .center {
     text-align: center;
+}
+
+.hidden {
+    display: none;
 }
