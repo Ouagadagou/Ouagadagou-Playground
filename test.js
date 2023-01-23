@@ -60,7 +60,7 @@ function start() {
                 start()
             }
         }
-    }, 10);
+    }, 100);
 }   
 function reset() {
     r = 1
