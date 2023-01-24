@@ -11,7 +11,6 @@ var t = 0
 var s = 0;
 var m = 0;
 var h = 0;
-var r = -1;
 inputId.addEventListener("keypress", function(event) {
     if (event.key === "Enter") {
         event.preventDefault();
@@ -63,7 +62,6 @@ function start() {
     }, 10);
 }   
 function reset() {
-    r = 1
     s = 0;
     m = 0;
     h = 0;
