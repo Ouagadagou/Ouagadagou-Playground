@@ -7,7 +7,7 @@ const resetId = document.getElementById("reset")
 const startId = document.getElementById("start")
 const pauseId = document.getElementById("pause")
 const resumeId = document.getElementById("resume")
-var t = 0
+var state
 var s = 0;
 var m = 0;
 var h = 0;
@@ -23,7 +23,7 @@ function start() {
     pauseId.classList.remove("hidden");
     startId.classList.add("hidden");
     setTimeout(function() {
-        if (t > 0) {
+        if (state === false) {
             return
         }
         else {
@@ -70,15 +70,20 @@ function reset() {
     hoursId.innerHTML = "0" + h
 }
 function pause() {
-    t = 1
+    state = false;
     pauseId.classList.add("hidden");
     resumeId.classList.remove("hidden");
 }
 function resume() {
-    if (t > 0) {
-    t = 0
+    state = true;
     resumeId.classList.add("hidden");
     pauseId.classList.remove("hidden");
     start()
-    }
+}
+
+function save() {
+    let list = document.getElementById("time");
+    let li = document.createElement("li");
+    li.innerText = hoursId.innerHTML + " : " + minutesId.innerHTML + " : " + secondsId.innerHTML;
+    list.appendChild(li);
 }
