@@ -62,6 +62,14 @@ function start() {
     }, 10);
 }   
 function reset() {
+    let list = document.getElementById("time");
+    let num = list.childElementCount
+    let i = 0
+    list.classList.add("hidden")
+    while (i < num) {
+    list.removeChild(list.firstChild);
+    i++
+    }
     s = 0;
     m = 0;
     h = 0;
@@ -84,6 +92,8 @@ function resume() {
 function save() {
     let list = document.getElementById("time");
     let li = document.createElement("li");
+    li.className = "center";
     li.innerText = hoursId.innerHTML + " : " + minutesId.innerHTML + " : " + secondsId.innerHTML;
     list.appendChild(li);
+    list.classList.remove("hidden")
 }

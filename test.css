@@ -53,6 +53,21 @@ body {
     text-align: center;
 }
 
+.list {
+    font-family: "Segoe UI", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+    color: rgb(173, 137, 69);
+    font-style: italic;
+    border-width: 2px;
+    border-color: rgba(253,187,45,0.6502976190476191);
+    border-style: solid;
+    font-size: 15px;
+    display: table;
+    margin: 0 auto;
+    padding-inline-start: 0px;
+    background: rgb(34,193,195);
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(235,205,170,0) 51%);
+}
+
 .hidden {
     display: none;
 }
