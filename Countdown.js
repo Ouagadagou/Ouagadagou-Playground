@@ -56,7 +56,7 @@ function update() {
             if (inputS.value >= 0 && inputS.value <= 99) {
                 s = +inputS.value
                 if (s < 10) {
-                    secondsId.innerHTML = "0" + s + 0
+                    secondsId.innerHTML = "0" + (s + 0)
                 } else {
                     secondsId.innerHTML = s
                 }
