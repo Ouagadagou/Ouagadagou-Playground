@@ -30,6 +30,7 @@ body {
     font-family: "Segoe UI", "Helvetica Neue", "Helvetica", Arial, sans-serif;
     color: rgb(173, 137, 69);
     font-style: italic;
+    font-size: 15px;
     background-color: rgb(235, 205, 170);
     border-width: 2px;
     border-color: azure;
@@ -55,17 +56,23 @@ body {
 
 .list {
     font-family: "Segoe UI", "Helvetica Neue", "Helvetica", Arial, sans-serif;
-    color: rgb(173, 137, 69);
+    color: azure;
     font-style: italic;
     border-width: 2px;
-    border-color: rgba(253,187,45,0.6502976190476191);
+    border-color: azure;
     border-style: solid;
     font-size: 15px;
     display: table;
     margin: 0 auto;
     padding-inline-start: 0px;
     background: rgb(34,193,195);
-    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(235,205,170,0) 51%);
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgb(235,205,170) 57%);
+    list-style-type: none;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+
 }
 
 .hidden {

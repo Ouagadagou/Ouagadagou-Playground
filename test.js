@@ -1,3 +1,4 @@
+// Variables and constants
 const inputId = document.getElementById("input");
 const inputValue = document.getElementById("input").value;
 const secondsId = document.getElementById("seconds");
@@ -11,12 +12,11 @@ var state;
 var s = 0;
 var m = 0;
 var h = 0;
+
+//Script
 inputId.addEventListener("keypress", function(event) {
     if (event.key === "Enter") {
         event.preventDefault();
-        var inputValue = document.getElementById("input").value;
-        console.log(inputValue);
-        window.open(`https://www.google.com/search?q=${inputValue}`);
     }
 })       
 function clock() {
@@ -99,8 +99,10 @@ function resume() {
 function save() {
     let list = document.getElementById("time");
     let li = document.createElement("li");
+    if (list.childElementCount < 10) {
     li.className = "center";
     li.innerText = hoursId.innerHTML + " : " + minutesId.innerHTML + " : " + secondsId.innerHTML;
     list.appendChild(li);
     list.classList.remove("hidden")
+    }
 }
