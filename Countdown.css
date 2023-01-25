@@ -1,0 +1,82 @@
+body {
+    background-color: rgb(224, 163, 114);
+}
+
+.input {
+    font-family: "Segoe UI", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+    color: rgb(202, 163, 90);
+    font-style: italic;
+    background-color: rgb(235, 205, 170);
+    border-width: 2px;
+    border-color: azure;
+    border-style: dotted;
+    margin-right: 20px;
+    width: 25px;
+}
+
+.text {
+    font-family: "Segoe UI", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+    color: rgb(173, 137, 69);
+    font-style: italic;
+    background-color: rgb(235, 205, 170);
+    border-width: 2px;
+    border-color: azure;
+    border-style: dotted;
+    width: 207px;
+    font-size: 40px;
+    display: table;
+    margin: 0 auto;
+}
+
+.button {
+    font-family: "Segoe UI", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+    color: rgb(173, 137, 69);
+    font-style: italic;
+    font-size: 15px;
+    background-color: rgb(235, 205, 170);
+    border-width: 2px;
+    border-color: azure;
+    border-style: dotted;
+    width: 100px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.header {
+    font-family: "Segoe UI", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+    font-size: 80px;
+    color: black
+}
+
+.center {
+    text-align: center;
+}
+
+.list {
+    font-family: "Segoe UI", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+    color: azure;
+    font-style: italic;
+    border-width: 2px;
+    border-color: azure;
+    border-style: solid;
+    font-size: 15px;
+    display: table;
+    margin: 0 auto;
+    padding-inline-start: 0px;
+    background: rgb(34,193,195);
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgb(235,205,170) 57%);
+    list-style-type: none;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+
+}
+
+.hidden {
+    display: none;
+}
