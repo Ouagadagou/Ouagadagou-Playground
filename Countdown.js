@@ -9,131 +9,156 @@ const resetId = document.getElementById("reset");
 const startId = document.getElementById("start");
 const pauseId = document.getElementById("pause");
 const resumeId = document.getElementById("resume");
-var state;
-var s
-var m
-var h
-
+var startCountdown;
+var state = false;
+var updateState;
+var s;
+var m;
+var h;
 //Script
-function update() {
+(function update() {
     setTimeout(function() {
         //Hours
-        if (state === true){
+        if (updateState === true){
             return
         }
         else {
             if (inputH.value >= 0 && inputH.value <= 99) {
-                h = +inputH.value
+                h = +inputH.value;
                 if (h < 10) {
-                    hoursId.innerHTML = "0" + (h + 0)
+                    hoursId.innerHTML = "0" + (h + 0);
                 } 
-                if (h >= 10) {
-                    hoursId.innerHTML = h
+                else {
+                    hoursId.innerHTML = h;
                 }
             }
             update();
         }
         //Minutes
-        if (state === true){
+        if (updateState === true){
             return
         }
         else {
             if (inputM.value >= 0 && inputM.value <= 99) {
                 m = +inputM.value
                 if (m < 10) {
-                    minutesId.innerHTML = "0" + (m + 0)
+                    minutesId.innerHTML = "0" + (m + 0);
                 } else {
-                    minutesId.innerHTML = m
+                    minutesId.innerHTML = m;
                 }
             }
             update();
         }
         //Seconds
-        if (state === true){
+        if (updateState === true){
             return
         }
         else {
             if (inputS.value >= 0 && inputS.value <= 99) {
                 s = +inputS.value
                 if (s < 10) {
-                    secondsId.innerHTML = "0" + (s + 0)
+                    secondsId.innerHTML = "0" + (s + 0);
                 } else {
-                    secondsId.innerHTML = s
+                    secondsId.innerHTML = s;
                 }
             }
             update();
         }
-    }, 100);
-}
-update()
+    }, 1);
+})();
 function clock() {
     setTimeout(function() {
         if (state === false) {
-            return
+            return;
         }
         else {
             s--;
+            let timeTaken = Date.now() - startCountdown;
+            console.log("Total time taken : " + timeTaken + " milliseconds")
             if (s < 0) {        
                 m--;
                 s = 99;
                 if (s < 10) {
-                    secondsId.innerHTML = "0" + s
+                    secondsId.innerHTML = "0" + s;
                 } else {
-                    secondsId.innerHTML = s
+                    secondsId.innerHTML = s;
                 }
                 if (m < 0) {
-                    m = 59
-                    h--
+                    m = 59;
+                    h--;
                     if (m < 10) {
-                        minutesId.innerHTML = "0" + m
+                        minutesId.innerHTML = "0" + m;
                     } else {
-                        minutesId.innerHTML = m
+                        minutesId.innerHTML = m;
                     }
                     if (h < 10) {
-                        hoursId.innerHTML = "0" + h
+                        hoursId.innerHTML = "0" + h;
                     } else {
-                        hoursId.innerHTML = h
+                        hoursId.innerHTML = h;
                     }
                     clock()
                 } else {
                     if (m < 10) {
-                        minutesId.innerHTML = "0" + m
+                        minutesId.innerHTML = "0" + m;
                     } else {
-                        minutesId.innerHTML = m
+                        minutesId.innerHTML = m;
                     }
-                    clock()
+                    clock();
                 }
             } 
             else {
                 if (s < 10) {
-                    secondsId.innerHTML = "0" + s
+                    secondsId.innerHTML = "0" + s;
                 } else {
-                    secondsId.innerHTML = s
+                    secondsId.innerHTML = s;
                 }
-                clock()
+                clock();
             }
         }
     }, 10);
-}   
+}
+(function delay() {
+    start();
+    reset();
+})()
 function start() {
     pauseId.classList.remove("hidden");
     startId.classList.add("hidden");
     state = true;
+    updateState = true;
+    startCountdown = Date.now();
     clock();
 }
 function reset() {
     let list = document.getElementById("time");
-    let num = list.childElementCount
-    let i = 0
-    list.classList.add("hidden")
+    let num = list.childElementCount;
+    let i = 0;
+    list.classList.add("hidden");
     while (i < num) {
     list.removeChild(list.firstChild);
-    i++
+    i++;
     }
     state = false;
-    secondsId.innerHTML = "0" + m;
-    minutesId.innerHTML = "0" + m;
-    hoursId.innerHTML = "" + h;
+    updateState = false;
+    h = +inputH.value;
+    m = +inputM.value;
+    s = +inputS.value;
+    if (h < 10) {
+        hoursId.innerHTML = "0" + (h + 0);
+    } 
+    else {
+        hoursId.innerHTML = h;
+    }
+    if (m < 10) {
+        minutesId.innerHTML = "0" + (m + 0);
+    } else {
+        minutesId.innerHTML = m;
+    }
+    if (s < 10) {
+        secondsId.innerHTML = "0" + (s + 0);
+    } else {
+        secondsId.innerHTML = s;
+    }
     pauseId.classList.add("hidden");
     resumeId.classList.add("hidden");
     startId.classList.remove("hidden");
@@ -141,11 +166,13 @@ function reset() {
 }
 function pause() {
     state = false;
+    updateState = false;
     pauseId.classList.add("hidden");
     resumeId.classList.remove("hidden");
 }
 function resume() {
     state = true;
+    updateState = false;
     resumeId.classList.add("hidden");
     pauseId.classList.remove("hidden");
     clock()
@@ -157,6 +184,6 @@ function save() {
     li.className = "center";
     li.innerText = hoursId.innerHTML + " : " + minutesId.innerHTML + " : " + secondsId.innerHTML;
     list.appendChild(li);
-    list.classList.remove("hidden")
+    list.classList.remove("hidden");
     }
 }
