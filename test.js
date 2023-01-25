@@ -1,13 +1,13 @@
-const inputId = document.getElementById("input")
-const inputValue = document.getElementById("input").value
-const secondsId = document.getElementById("seconds")
-const minutesId = document.getElementById("minutes")
-const hoursId = document.getElementById("hours")
-const resetId = document.getElementById("reset")
-const startId = document.getElementById("start")
-const pauseId = document.getElementById("pause")
-const resumeId = document.getElementById("resume")
-var state
+const inputId = document.getElementById("input");
+const inputValue = document.getElementById("input").value;
+const secondsId = document.getElementById("seconds");
+const minutesId = document.getElementById("minutes");
+const hoursId = document.getElementById("hours");
+const resetId = document.getElementById("reset");
+const startId = document.getElementById("start");
+const pauseId = document.getElementById("pause");
+const resumeId = document.getElementById("resume");
+var state;
 var s = 0;
 var m = 0;
 var h = 0;
@@ -18,10 +18,8 @@ inputId.addEventListener("keypress", function(event) {
         console.log(inputValue);
         window.open(`https://www.google.com/search?q=${inputValue}`);
     }
-})
-function start() {
-    pauseId.classList.remove("hidden");
-    startId.classList.add("hidden");
+})       
+function clock() {
     setTimeout(function() {
         if (state === false) {
             return
@@ -41,14 +39,14 @@ function start() {
                     } else {
                         hoursId.innerHTML = h
                     }
-                    start()
+                    clock()
                 } else {
                     if (m < 10) {
                         minutesId.innerHTML = "0" + m
                     } else {
                         minutesId.innerHTML = m
                     }
-                    start()
+                    clock()
                 }
             } else {
                 if (s < 10) {
@@ -56,11 +54,17 @@ function start() {
                 } else {
                     secondsId.innerHTML = s
                 }
-                start()
+                clock()
             }
         }
     }, 10);
 }   
+function start() {
+    pauseId.classList.remove("hidden");
+    startId.classList.add("hidden");
+    state = true;
+    clock();
+}
 function reset() {
     let list = document.getElementById("time");
     let num = list.childElementCount
@@ -73,9 +77,13 @@ function reset() {
     s = 0;
     m = 0;
     h = 0;
-    secondsId.innerHTML = "0" + m
-    minutesId.innerHTML = "0" + m
-    hoursId.innerHTML = "0" + h
+    state = false;
+    secondsId.innerHTML = "0" + m;
+    minutesId.innerHTML = "0" + m;
+    hoursId.innerHTML = "0" + h;
+    pauseId.classList.add("hidden");
+    resumeId.classList.add("hidden");
+    startId.classList.remove("hidden");
 }
 function pause() {
     state = false;
@@ -86,9 +94,8 @@ function resume() {
     state = true;
     resumeId.classList.add("hidden");
     pauseId.classList.remove("hidden");
-    start()
+    clock()
 }
-
 function save() {
     let list = document.getElementById("time");
     let li = document.createElement("li");
