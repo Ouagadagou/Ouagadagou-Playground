@@ -1,4 +1,4 @@
-var dlxlib = require("dlxlib");
+
 var state = true;
 var error = 0;
 var sudoku = [
@@ -55,7 +55,7 @@ var boxMatrix = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0],
-];
+]; 
 for (let i = 0; i < 9; i++) {
   for (let j = 0; j < 9; j++) {
     if (sudoku[i][j] > 0) {
@@ -105,6 +105,7 @@ while (state == true) {
                     columnMatrix[j][k] = 1;
                     rowMatrix[i][k] = 1;
                     boxMatrix[0][k] = 1;
+                    console.log(k)
                   } else if (boxMatrix[0][k] == 1) {
                     error = error + 1;
                     console.log(error);
@@ -115,6 +116,7 @@ while (state == true) {
                     columnMatrix[j][k] = 1;
                     rowMatrix[i][k] = 1;
                     boxMatrix[1][k] = 1;
+                    console.log(k)
                   } else if (boxMatrix[1][k] == 1) {
                     error = error + 1;
                     console.log(error);
@@ -125,6 +127,7 @@ while (state == true) {
                     columnMatrix[j][k] = 1;
                     rowMatrix[i][k] = 1;
                     boxMatrix[2][k] = 1;
+                    console.log(k)
                   } else if (boxMatrix[2][k] == 1) {
                     error = error + 1;
                     console.log(error);
@@ -137,6 +140,7 @@ while (state == true) {
                     columnMatrix[j][k] = 1;
                     rowMatrix[i][k] = 1;
                     boxMatrix[3][k] = 1;
+                    console.log(k)
                   } else if (boxMatrix[3][k] == 1) {
                     error = error + 1;
                     console.log(error);
@@ -147,6 +151,7 @@ while (state == true) {
                     columnMatrix[j][k] = 1;
                     rowMatrix[i][k] = 1;
                     boxMatrix[4][k] = 1;
+                    console.log(k)
                   } else if (boxMatrix[4][k] == 1) {
                     error = error + 1;
                     console.log(error);
@@ -157,6 +162,7 @@ while (state == true) {
                     columnMatrix[j][k] = 1;
                     rowMatrix[i][k] = 1;
                     boxMatrix[5][k] = 1;
+                    console.log(k)
                   } else if (boxMatrix[5][k] == 1) {
                     error = error + 1;
                     console.log(error);
@@ -169,6 +175,7 @@ while (state == true) {
                     columnMatrix[j][k] = 1;
                     rowMatrix[i][k] = 1;
                     boxMatrix[6][k] = 1;
+                    console.log(k)
                   } else if (boxMatrix[6][k] == 1) {
                     error = error + 1;
                     console.log(error);
@@ -179,6 +186,7 @@ while (state == true) {
                     columnMatrix[j][k] = 1;
                     rowMatrix[i][k] = 1;
                     boxMatrix[7][k] = 1;
+                    console.log(k)
                   } else if (boxMatrix[7][k] == 1) {
                     error = error + 1;
                     console.log(error);
@@ -189,6 +197,7 @@ while (state == true) {
                     columnMatrix[j][k] = 1;
                     rowMatrix[i][k] = 1;
                     boxMatrix[8][k] = 1;
+                    console.log(k)
                   } else if (boxMatrix[8][k] == 1) {
                     error = error + 1;
                     console.log(error);
@@ -212,6 +221,6 @@ while (state == true) {
         i = i - 2;
       }
     }
-    state = false;
   }
+  state = false;
 }
