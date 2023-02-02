@@ -1,4 +1,3 @@
-
 var state = true;
 var error = 0;
 var sudoku = [
@@ -12,215 +11,44 @@ var sudoku = [
   [3, 7, 0, 0, 9, 0, 1, 0, 0],
   [0, 0, 5, 1, 3, 0, 0, 0, 0],
 ];
-var answer = [
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-];
-var columnMatrix = [
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-];
-var rowMatrix = [
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-];
-var boxMatrix = [
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-]; 
-for (let i = 0; i < 9; i++) {
-  for (let j = 0; j < 9; j++) {
-    if (sudoku[i][j] > 0) {
-      columnMatrix[j][sudoku[i][j] - 1] = 1;
-      rowMatrix[i][sudoku[i][j] - 1] = 1;
-      if (i <= 2) {
-        if (j <= 2) {
-          boxMatrix[0][sudoku[i][j] - 1] = 1;
-        } else if (j <= 5) {
-          boxMatrix[1][sudoku[i][j] - 1] = 1;
-        } else if (j <= 8) {
-          boxMatrix[2][sudoku[i][j] - 1] = 1;
-        }
-      } else if (i <= 5) {
-        if (j <= 2) {
-          boxMatrix[3][sudoku[i][j] - 1] = 1;
-        } else if (j <= 5) {
-          boxMatrix[4][sudoku[i][j] - 1] = 1;
-        } else if (j <= 8) {
-          boxMatrix[5][sudoku[i][j] - 1] = 1;
-        }
-      } else if (i <= 8) {
-        if (j <= 2) {
-          boxMatrix[6][sudoku[i][j] - 1] = 1;
-        } else if (j <= 5) {
-          boxMatrix[7][sudoku[i][j] - 1] = 1;
-        } else if (j <= 8) {
-          boxMatrix[8][sudoku[i][j] - 1] = 1;
-        }
+var matrix = [];
+for (let cN = 0; cN < 9; cN++) {
+  for (let cC = 0; cC < 81; cC++) {
+    let currentMatrix = [];
+    for (let celU = 0; celU < 81; celU++) {
+      if (celU == cC) {
+        currentMatrix[celU] = 1;
+      } else {
+        currentMatrix[celU] = 0;
       }
     }
-  }
-}
-while (state == true) {
-  for (let i = 0; i < 9; i++) {
-    for (let j = 0; j < 9; j++) {
-      for (let k = 0; k < 9; k++) {
-        if (sudoku[i][j] > 0) {
-          break;
-        } else if (sudoku[i][j] == 0) {
-          if (columnMatrix[j][k] == 0) {
-            if (rowMatrix[i][k] == 0) {
-              if (i <= 2) {
-                if (j <= 2) {
-                  if (boxMatrix[0][k] == 0) {
-                    answer[i][j] = k;
-                    columnMatrix[j][k] = 1;
-                    rowMatrix[i][k] = 1;
-                    boxMatrix[0][k] = 1;
-                    console.log(k)
-                  } else if (boxMatrix[0][k] == 1) {
-                    error = error + 1;
-                    console.log(error);
-                  }
-                } else if (j <= 5) {
-                  if (boxMatrix[1][k] == 0) {
-                    answer[i][j] = k;
-                    columnMatrix[j][k] = 1;
-                    rowMatrix[i][k] = 1;
-                    boxMatrix[1][k] = 1;
-                    console.log(k)
-                  } else if (boxMatrix[1][k] == 1) {
-                    error = error + 1;
-                    console.log(error);
-                  }
-                } else if (j <= 8) {
-                  if (boxMatrix[2][k] == 0) {
-                    answer[i][j] = k;
-                    columnMatrix[j][k] = 1;
-                    rowMatrix[i][k] = 1;
-                    boxMatrix[2][k] = 1;
-                    console.log(k)
-                  } else if (boxMatrix[2][k] == 1) {
-                    error = error + 1;
-                    console.log(error);
-                  }
-                }
-              } else if (i <= 5) {
-                if (j <= 2) {
-                  if (boxMatrix[3][k] == 0) {
-                    answer[i][j] = k;
-                    columnMatrix[j][k] = 1;
-                    rowMatrix[i][k] = 1;
-                    boxMatrix[3][k] = 1;
-                    console.log(k)
-                  } else if (boxMatrix[3][k] == 1) {
-                    error = error + 1;
-                    console.log(error);
-                  }
-                } else if (j <= 5) {
-                  if (boxMatrix[4][k] == 0) {
-                    answer[i][j] = k;
-                    columnMatrix[j][k] = 1;
-                    rowMatrix[i][k] = 1;
-                    boxMatrix[4][k] = 1;
-                    console.log(k)
-                  } else if (boxMatrix[4][k] == 1) {
-                    error = error + 1;
-                    console.log(error);
-                  }
-                } else if (j <= 8) {
-                  if (boxMatrix[5][k] == 0) {
-                    answer[i][j] = k;
-                    columnMatrix[j][k] = 1;
-                    rowMatrix[i][k] = 1;
-                    boxMatrix[5][k] = 1;
-                    console.log(k)
-                  } else if (boxMatrix[5][k] == 1) {
-                    error = error + 1;
-                    console.log(error);
-                  }
-                }
-              } else if (i <= 8) {
-                if (j <= 2) {
-                  if (boxMatrix[6][k] == 0) {
-                    answer[i][j] = k;
-                    columnMatrix[j][k] = 1;
-                    rowMatrix[i][k] = 1;
-                    boxMatrix[6][k] = 1;
-                    console.log(k)
-                  } else if (boxMatrix[6][k] == 1) {
-                    error = error + 1;
-                    console.log(error);
-                  }
-                } else if (j <= 5) {
-                  if (boxMatrix[7][k] == 0) {
-                    answer[i][j] = k;
-                    columnMatrix[j][k] = 1;
-                    rowMatrix[i][k] = 1;
-                    boxMatrix[7][k] = 1;
-                    console.log(k)
-                  } else if (boxMatrix[7][k] == 1) {
-                    error = error + 1;
-                    console.log(error);
-                  }
-                } else if (j <= 8) {
-                  if (boxMatrix[8][k] == 0) {
-                    answer[i][j] = k;
-                    columnMatrix[j][k] = 1;
-                    rowMatrix[i][k] = 1;
-                    boxMatrix[8][k] = 1;
-                    console.log(k)
-                  } else if (boxMatrix[8][k] == 1) {
-                    error = error + 1;
-                    console.log(error);
-                  }
-                }
-              } else if (rowMatrix[i][k] == 1) {
-                error = error + 1;
-                console.log(error);
-              }
-            } else if (sudoku[i][j] == 1) {
-              error = error + 1;
-              console.log(error);
-            }
-          }
-        }
-        if (k == 6) {
-          j = j - 2;
-        }
-      }
-      if (j == 6) {
-        i = i - 2;
+    for (let rowU = 0; rowU < 81; rowU++) {
+      if (rowU == Math.floor(cC / 9) * 9 + cN) {
+        currentMatrix[rowU + 81] = 1;
+      } else {
+        currentMatrix[rowU + 81] = 0;
       }
     }
+    for (let colU = 0; colU < 81; colU++) {
+      if (colU == (cC % 9) * 9 + cN) {
+        currentMatrix[colU + 162] = 1;
+      } else {
+        currentMatrix[colU + 162] = 0;
+      }
+    }
+    for (let boxU = 0; boxU < 81; boxU++) {
+      if (
+        boxU ==
+        Math.floor((cC % 9) / 3) +
+          3 * Math.floor(Math.floor(cC / 9) / 3) * 9 +
+          cN
+      ) {
+        currentMatrix[boxU + 243] = 1;
+      } else {
+        currentMatrix[boxU + 243] = 0;
+      }
+    }
+    matrix.push(currentMatrix)
   }
-  state = false;
 }
+console.log(matrix);
