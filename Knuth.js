@@ -1,6 +1,4 @@
 const start = Date.now();
-var state = true;
-var error = 0;
 var sudoku = [
   [6, 0, 0, 0, 0, 7, 0, 0, 1],
   [4, 3, 0, 0, 0, 5, 6, 7, 0],
@@ -46,7 +44,41 @@ var mainMatrix = [];
   }
 })();
 (function analyse() {
-  console.log(mainMatrix.indexOf(mainMatrix[256]))
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      let currentNumber = sudoku[i][j] - 1;
+      if (currentNumber >= 0) {
+        for (let k = 0; k < 9; k++) {
+          let cN = currentNumber * 81 + i * 9 + j;
+          let cL = k * 81 + (cN % 81);
+          let cC = currentNumber * 81 + i * 9 + k;
+          let cR = currentNumber * 81 + k * 9 + j;
+          let cB = currentNumber * 81 + Math.floor((Math.floor(i / 3) * 3 + Math.floor(j / 3)) / 3) * 27 + (Math.floor(i / 3) * 3 + (Math.floor(j / 3) % 3)) * 3 + Math.floor(k / 3) * 9 + (k % 3);
+          if (cL != cN) {
+            if (mainMatrix.indexOf(baseMatrix[cL]) != -1) {
+              mainMatrix.splice(mainMatrix.indexOf(baseMatrix[cL]), 1);
+            }
+          }
+          if (cC != cN) {
+            if (mainMatrix.indexOf(baseMatrix[cC]) != -1) {
+              mainMatrix.splice(mainMatrix.indexOf(baseMatrix[cC]), 1);
+            }
+          }
+          if (cR != cN) {
+            if (mainMatrix.indexOf(baseMatrix[cR]) != -1) {
+              mainMatrix.splice(mainMatrix.indexOf(baseMatrix[cR]), 1);
+            }
+          }
+          if (cB != cN && cB != cC && cB != cR) {
+            if (mainMatrix.indexOf(baseMatrix[cB]) != -1) {
+              mainMatrix.splice(mainMatrix.indexOf(baseMatrix[cB]), 1);
+            }
+          }
+        }
+      }
+    }
+  }
 })();
+console.log(mainMatrix);
 const end = Date.now();
 console.log(`Execution time: ${end - start} ms`);
