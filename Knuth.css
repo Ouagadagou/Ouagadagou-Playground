@@ -1,0 +1,27 @@
+body {
+  background-color: blanchedalmond;
+  position: fixed;
+  top: 49%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.input {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  background-color: blanchedalmond;
+  border: none;
+}
+div.div {
+    background: rgb(10,228,231);
+    background: linear-gradient(0deg, rgba(10,228,231,1) 0%, rgba(4,131,36,1) 100%);
+    padding-left: 15px;
+    padding-top: 15px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+}
+div.top {
+    margin-top: 5px;
+}
