@@ -92,7 +92,7 @@ var mainMatrix = [];
   }
 })();
 (function finalAnswer() {
-  let solutions = dlxlib.solve(mainMatrix);
+  /*let solutions = dlxlib.solve(mainMatrix);*/
   for (let i = 0; i < 81; i++) {
     let matrix = baseMatrix.indexOf(mainMatrix[solutions[0][i]]);
     let cC = Math.floor((matrix % 81) / 9);
