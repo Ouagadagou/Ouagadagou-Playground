@@ -1,15 +1,15 @@
 var dlxlib = require("dlxlib");
 const start = Date.now();
 var sudoku = [
-  [0, 0, 0, 4, 0, 0, 0, 0, 9],
-  [0, 3, 8, 0, 0, 6, 7, 0, 0],
-  [9, 5, 0, 0, 0, 0, 6, 0, 2],
-  [2, 1, 3, 0, 9, 5, 0, 7, 6],
-  [0, 0, 0, 2, 0, 0, 0, 5, 3],
-  [7, 9, 0, 3, 6, 4, 0, 8, 1],
-  [0, 0, 0, 0, 8, 9, 0, 0, 7],
-  [0, 2, 9, 7, 4, 0, 0, 0, 0],
-  [8, 0, 0, 0, 0, 0, 3, 0, 0],
+  [8, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 3, 6, 0, 0, 0, 0, 0],
+  [0, 7, 0, 0, 9, 0, 2, 0, 0],
+  [0, 5, 0, 0, 0, 7, 0, 0, 0],
+  [0, 0, 0, 0, 4, 5, 7, 0, 0],
+  [0, 0, 0, 1, 0, 0, 0, 3, 0],
+  [0, 0, 1, 0, 0, 0, 0, 6, 8],
+  [0, 0, 8, 5, 0, 0, 0, 1, 0],
+  [0, 9, 0, 0, 0, 0, 4, 0, 0],
 ];
 var answer = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -34,21 +34,25 @@ var mainMatrix = [];
         } else {
           currentMatrix[celU] = 0;
         }
+        /*Si la cellule est deja utilise*/ 
         if (celU == Math.floor(cC / 9) * 9 + cN) {
           currentMatrix[celU + 81] = 1;
         } else {
           currentMatrix[celU + 81] = 0;
         }
+        /*Si la horizontale est deja utilise*/
         if (celU == (cC % 9) * 9 + cN) {
           currentMatrix[celU + 162] = 1;
         } else {
           currentMatrix[celU + 162] = 0;
         }
+        /*Si la verticale est deja utilise*/
         if (celU == (Math.floor((cC % 9) / 3) + 3 * Math.floor(Math.floor(cC / 9) / 3)) * 9 + cN) {
           currentMatrix[celU + 243] = 1;
         } else {
           currentMatrix[celU + 243] = 0;
         }
+        /*Si la boite est deja utilise*/
       }
       baseMatrix.push(currentMatrix);
       mainMatrix.push(currentMatrix);
@@ -92,7 +96,7 @@ var mainMatrix = [];
   }
 })();
 (function finalAnswer() {
-  /*let solutions = dlxlib.solve(mainMatrix);*/
+  let solutions = dlxlib.solve(mainMatrix);
   for (let i = 0; i < 81; i++) {
     let matrix = baseMatrix.indexOf(mainMatrix[solutions[0][i]]);
     let cC = Math.floor((matrix % 81) / 9);
